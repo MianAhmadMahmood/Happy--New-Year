@@ -1,0 +1,165 @@
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  height: 100vh;
+  background: linear-gradient(135deg, #0a2e48, #1e4e6b, #192d3b);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Animated Gradient Background */
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Night Sky with Stars */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(10,10,50,0.8), rgba(0,0,0,1));
+  z-index: 0;
+}
+
+body::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://source.unsplash.com/1600x900/?stars') center/cover no-repeat;
+  opacity: 0.3;
+  z-index: 0;
+}
+
+/* Twinkling Stars */
+@keyframes twinkling {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  animation: twinkling 2s infinite;
+}
+
+/* Container */
+.container {
+  text-align: center;
+  color: #ffffff;
+  position: relative;
+  z-index: 2;
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Year Transition */
+.year-transition {
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: bold;
+  color: #ffe600;
+  position: relative;
+  overflow: hidden;
+  height: 120px;
+  line-height: 120px;
+}
+
+.year {
+  display: inline-block;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+  text-shadow: 0 0 20px #ffd700, 0 0 40px #ff6a00;
+}
+
+.old-year {
+  transform: translateX(0);
+}
+
+.new-year {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+/* Countdown */
+#countdown {
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  color: #00ffcc;
+  margin: 1rem 0;
+  text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffff;
+}
+
+/* Happy New Year Message */
+.message {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.message h2 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: #ff80bf;
+  text-shadow: 0 0 10px #ff80bf, 0 0 20px #ff99cc;
+}
+
+/* Celebrate Button */
+#celebrate-btn {
+  padding: 15px 25px;
+  font-size: 1.2rem;
+  color: #ffffff;
+  background: linear-gradient(45deg, #ff5733, #ff33ff);
+  border: none;
+  border-radius: 25px;
+  margin-top: 1rem;
+  cursor: pointer;
+  text-shadow: 0 0 10px #ff99cc, 0 0 20px #ff66ff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#celebrate-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px #ff99ff;
+}
+
+/* Fireworks Canvas */
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Responsive Tweaks */
+@media (max-width: 600px) {
+  .year-transition {
+    line-height: 80px;
+    height: 80px;
+  }
+
+  #celebrate-btn {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+}
